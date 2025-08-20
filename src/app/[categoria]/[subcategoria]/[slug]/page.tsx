@@ -89,7 +89,7 @@ const components: PortableTextComponents = {
 };
 
 export default async function TesisPage({ params }: { params: Params }) {
-  const { slug } = await Promise.resolve(params); // Asegurarse de que params esté disponible
+  const { slug } = params; // Accede directamente a params
   const post: Post | null = await client.fetch(
     `*[_type == "post" && slug.current == $slug][0]{title, body}`,
     { slug }
