@@ -98,7 +98,10 @@ export default async function TesisPage({
   const { categoria, subcategoria, slug } = resolvedParams;
 
   const post: Post | null = await client.fetch(
-    `*[_type == "post" && categoria == $categoria && subcategoria == $subcategoria && slug.current == $slug][0]{ title, body }`,
+    `*[_type == "post" 
+      && slug.current == $slug 
+      && subcategoria->slug.current == $subcategoria 
+      && categoria->slug.current == $categoria][0]{ title, body }`,
     { categoria, subcategoria, slug }
   );
 
