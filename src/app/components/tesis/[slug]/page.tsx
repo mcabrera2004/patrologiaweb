@@ -17,7 +17,7 @@ export default async function TesisPage({ params }: { params: Params }) {
     { slug }
   );
 
-  if (!tesis) return <div>No existe la tesis.</div>;
+  if (!tesis) return <div>La tesis solicitada no existe.</div>;
 
   return (
     <div className="container">
