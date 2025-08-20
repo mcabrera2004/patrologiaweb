@@ -90,7 +90,6 @@ const components: PortableTextComponents = {
 };
 
 export async function generateStaticParams() {
-  // Busca todos los posts y retorna los params posibles
   const posts = await client.fetch(
     `*[_type == "post"]{
       "categoria": categoria->slug.current,
@@ -98,11 +97,14 @@ export async function generateStaticParams() {
       "slug": slug.current
     }`
   );
-  return posts.map((p: any) => ({
-    categoria: p.categoria,
-    subcategoria: p.subcategoria,
-    slug: p.slug,
-  }));
+  // Filtra los que tengan todos los slugs definidos
+  return posts
+    .filter((p: any) => p.categoria && p.subcategoria && p.slug)
+    .map((p: any) => ({
+      categoria: p.categoria,
+      subcategoria: p.subcategoria,
+      slug: p.slug,
+    }));
 }
 
 export default async function TesisPage({
