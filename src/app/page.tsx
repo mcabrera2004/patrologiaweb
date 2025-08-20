@@ -1,103 +1,42 @@
-import Image from "next/image";
-
+import Sidebar from "./components/Sidebar";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <Header />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <div className="container">
+        <div className="main-layout">
+          <Sidebar />
+
+          <main className="main-content" id="mainContent">
+            <h1>Entendiendo a los Padres de la Iglesia</h1>
+            <div className="columns">
+              <div className="column">
+                <h2>QUÉ</h2>
+                <p>
+                  Aunque siempre hubo algunos disidentes, durante los primeros mil años de la Iglesia existió un amplio consenso entre los Padres sobre todos los principios básicos de la fe, desde el Bautismo hasta la Eucaristía y el papel de la Tradición. Como los pastores y teólogos más respetados de su tiempo, la opinión de los Padres estableció el estándar de lo que se considera enseñanza cristiana bíblica.
+                </p>
+              </div>
+              <div className="column">
+                <h2>POR QUÉ</h2>
+                <p>
+                  Aunque muchas personas debaten sobre teología, pocas se toman el tiempo para ver qué ha dicho la Iglesia primitiva sobre distintos temas teológicos. Si bien los Padres de la Iglesia no eran infalibles, su consenso generalizado sobre ciertos temas debería otorgar peso a las posturas teológicas que defendieron. A pesar de que sus escritos están disponibles de forma gratuita <a href="#">en línea</a>, muchas personas no se han tomado el tiempo de informarse sobre lo que enseñaron los Padres de la Iglesia.
+                </p>
+              </div>
+              <div className="column">
+                <h2>QUIÉNES</h2>
+                <p>
+                  Los Padres de la Iglesia primitiva se dividen en tres categorías principales: Padres Apostólicos, Padres ante-nicenos y Padres post-nicenos. Los Padres Apostólicos fueron contemporáneos de los apóstoles y probablemente fueron instruidos por ellos, transmitiendo la tradición y enseñanza de los mismos apóstoles como sus sucesores directos. Ejemplos de Padres Apostólicos son Clemente y Policarpo.
+                </p>
+              </div>
+            </div>
+          </main>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+
+      <Footer />
+    </>
   );
 }
