@@ -16,17 +16,15 @@ interface Post {
 }
 
 export async function generateStaticParams() {
-  const posts = await client.fetch(
-    `*[_type == "post"]{
+  const subcats = await client.fetch(
+    `*[_type == "subcategoria"]{
       "categoria": categoria->slug.current,
-      "subcategoria": subcategoria->slug.current,
-      "slug": slug.current
+      "subcategoria": slug.current
     }`
   );
-  return posts.map((p: any) => ({
-    categoria: p.categoria,
-    subcategoria: p.subcategoria,
-    slug: p.slug,
+  return subcats.map((s: any) => ({
+    categoria: s.categoria,
+    subcategoria: s.subcategoria,
   }));
 }
 
