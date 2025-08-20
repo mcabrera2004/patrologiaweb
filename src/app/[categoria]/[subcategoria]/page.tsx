@@ -15,6 +15,20 @@ interface Post {
   slug: { current: string };
 }
 
+export async function generateStaticParams() {
+  // Busca todas las subcategorías y retorna los params posibles
+  const subcats = await client.fetch(
+    `*[_type == "subcategoria"]{
+      "categoria": categoria->slug.current,
+      "subcategoria": slug.current
+    }`
+  );
+  return subcats.map((s: any) => ({
+    categoria: s.categoria,
+    subcategoria: s.subcategoria,
+  }));
+}
+
 export default async function SubcategoriaPage({
   params,
 }: {
