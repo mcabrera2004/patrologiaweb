@@ -15,8 +15,12 @@ interface Post {
   slug: { current: string };
 }
 
-export default async function SubcategoriaPage({ params }: { params: Params }) {
-  const { subcategoria, categoria } = await Promise.resolve(params); // Asegurarse de que params esté disponible
+export default async function SubcategoriaPage({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
+  const { subcategoria, categoria } = await params;
   const subcat = await client.fetch(
     `*[_type == "subcategoria" && slug.current == $slug][0]`,
     { slug: subcategoria }

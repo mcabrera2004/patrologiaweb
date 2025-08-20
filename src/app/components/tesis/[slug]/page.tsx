@@ -10,8 +10,12 @@ interface Tesis {
   contenido: string;
 }
 
-export default async function TesisPage({ params }: { params: Params }) {
-  const { slug } = params;
+export default async function TesisPage({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
+  const { slug } = await params;
   const tesis: Tesis | null = await client.fetch(
     `*[_type == "tesis" && slug.current == $slug][0]`,
     { slug }

@@ -4,6 +4,7 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 export const revalidate = 60;
+
 interface Params {
   categoria: string;
   subcategoria: string;
@@ -30,11 +31,11 @@ const components: PortableTextComponents = {
         className="objections-title"
         style={{
           fontWeight: 700,
-          borderBottom: '2px solid currentColor',
+          borderBottom: "2px solid currentColor",
           paddingBottom: 12,
           fontFamily: "'Source Serif Pro', serif",
-          fontSize: '1.6rem',
-          margin: '50px 0 25px 0',
+          fontSize: "1.6rem",
+          margin: "50px 0 25px 0",
         }}
       >
         {children}
@@ -44,13 +45,13 @@ const components: PortableTextComponents = {
       <h4
         style={{
           fontWeight: 600,
-          borderBottom: '2px solid currentColor',
+          borderBottom: "2px solid currentColor",
           paddingBottom: 8,
           fontFamily: "'Source Serif Pro', serif",
-          fontSize: '1.15rem',
-          margin: '35px 0 18px 0',
-          color: '#8b6914',
-          letterSpacing: '0.5px',
+          fontSize: "1.15rem",
+          margin: "35px 0 18px 0",
+          color: "#8b6914",
+          letterSpacing: "0.5px",
         }}
       >
         {children}
@@ -59,17 +60,17 @@ const components: PortableTextComponents = {
   },
   marks: {
     red: ({ children }) => (
-      <span style={{ color: '#8b2635' }}>{children}</span>
+      <span style={{ color: "#8b2635" }}>{children}</span>
     ),
     sup: ({ children }) => (
       <sup
         style={{
-          fontSize: '0.85em',
-          verticalAlign: 'super',
-          color: '#222',
+          fontSize: "0.85em",
+          verticalAlign: "super",
+          color: "#222",
           fontFamily: "'Source Serif Pro', serif",
           fontWeight: 600,
-          letterSpacing: '0.02em',
+          letterSpacing: "0.02em",
         }}
       >
         {children}
@@ -80,7 +81,7 @@ const components: PortableTextComponents = {
         href={value?.href}
         target="_blank"
         rel="noopener noreferrer"
-        style={{ color: '#1a0dab', textDecoration: 'underline' }}
+        style={{ color: "#1a0dab", textDecoration: "underline" }}
       >
         {children}
       </a>
@@ -88,11 +89,17 @@ const components: PortableTextComponents = {
   },
 };
 
-export default async function TesisPage({ params }: { params: Params }) {
-  const { slug } = params; // Accede directamente a params
+export default async function TesisPage({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
+  const resolvedParams = await params;
+  const { categoria, subcategoria, slug } = resolvedParams;
+
   const post: Post | null = await client.fetch(
-    `*[_type == "post" && slug.current == $slug][0]{title, body}`,
-    { slug }
+    `*[_type == "post" && categoria == $categoria && subcategoria == $subcategoria && slug.current == $slug][0]{ title, body }`,
+    { categoria, subcategoria, slug }
   );
 
   if (!post) return <div>No existe la tesis.</div>;
