@@ -681,24 +681,24 @@ footer a:hover {
         flex-direction: column;
         gap: 0;
         margin-top: 20px;
-        height: auto; /* CAMBIO: Remove fixed height */
-        align-items: stretch; /* CAMBIO: Stretch items instead of flex-start */
+        height: auto;
+        align-items: stretch;
     }
     
     .sidebar {
-        width: 100%; /* CAMBIO: Full width instead of fixed 300px */
-        position: fixed; /* CAMBIO: Fixed positioning for mobile overlay */
+        width: 50vw;           /* Solo la mitad de la pantalla */
+        position: fixed;
         top: 0;
-        left: -100%; /* CAMBIO: Start off-screen */
-        height: 100vh; /* CAMBIO: Full viewport height */
+        left: -50vw;           /* Oculta la sidebar fuera de la pantalla */
+        height: 100vh;
         background: linear-gradient(180deg, #f8f8f8 0%, #f0f0f0 100%);
         border: 1px solid #e0e0e0;
-        border-radius: 0; /* CAMBIO: Remove border radius for mobile */
-        box-shadow: 2px 0 12px rgba(0,0,0,0.15); /* CAMBIO: Side shadow */
-        padding: 80px 0 0 0; /* CAMBIO: Add top padding for header space */
-        z-index: 1001; /* CAMBIO: Higher z-index than header */
-        transition: left 0.3s ease; /* CAMBIO: Animate left position */
-        max-height: none; /* CAMBIO: Remove max-height restriction */
+        border-radius: 0;
+        box-shadow: 2px 0 12px rgba(0,0,0,0.15);
+        padding: 80px 0 0 0;
+        z-index: 1001;
+        transition: left 0.3s ease;
+        max-height: none;
         overflow-y: auto;
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -709,15 +709,15 @@ footer a:hover {
     }
     
     .sidebar.mobile-open {
-        left: 0; /* CAMBIO: Slide in from left */
+        left: 0;
     }
     
     .main-content {
         padding: 35px;
         margin-bottom: 0;
-        height: auto; /* CAMBIO: Remove fixed height */
-        overflow-y: visible; /* CAMBIO: Remove scroll restriction */
-        width: 100%; /* CAMBIO: Ensure full width */
+        height: auto;
+        overflow-y: visible;
+        width: 100%;
     }
     
     .main-content h1 {
