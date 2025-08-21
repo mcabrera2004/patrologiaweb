@@ -3,11 +3,18 @@ import React, { useState, useEffect } from "react";
 import { client } from "@/sanity/lib/client";
 import Link from "next/link";
 
+type Subcategoria = {
+  title: string;
+  slug: { current: string };
+  priority?: number;
+};
+
 type Categoria = {
   _id: string;
   title: string;
   slug: { current: string };
-  subcategorias: { title: string; slug: { current: string } }[];
+  priority?: number;
+  subcategorias: Subcategoria[];
 };
 
 export default function Sidebar() {
@@ -17,13 +24,15 @@ export default function Sidebar() {
   useEffect(() => {
     client
       .fetch(
-        `*[_type == "categoria"]|order(title asc){
+        `*[_type == "categoria"]|order(priority asc, title asc){
           _id,
           title,
           slug,
-          "subcategorias": *[_type == "subcategoria" && references(^._id)]|order(title asc){
+          priority,
+          "subcategorias": *[_type == "subcategoria" && references(^._id)]|order(priority asc, title asc){
             title,
-            slug
+            slug,
+            priority
           }
         }`
       )

@@ -27,5 +27,12 @@ export const subcategoriaType = defineType({
       type: 'reference',
       to: [{ type: 'categoria' }],
     },
+    {
+      name: 'priority',
+      title: 'Prioridad',
+      type: 'number',
+      description: 'Un número menor significa mayor prioridad',
+      initialValue: 1,
+    },
   ],
 })

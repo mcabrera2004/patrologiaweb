@@ -16,5 +16,12 @@ export const categoriaType = defineType({
       type: 'slug',
       options: { source: 'title', maxLength: 96 },
     },
+    {
+      name: 'priority',
+      title: 'Prioridad',
+      type: 'number',
+      description: 'Un número menor significa mayor prioridad',
+      initialValue: 1,
+    },
   ],
 })
