@@ -627,13 +627,17 @@ footer a:hover {
     opacity: 1;
 }
 
-/* Estilos de accesibilidad */
 *:focus {
     outline: 2px solid #8b6914;
     outline-offset: 2px;
 }
 
-/* Soporte para modo de alto contraste */
+.objection .note-toggle:focus {
+    outline: 2px solid #8b2635 !important;
+    outline-offset: 2px;
+    box-shadow: none;
+}
+
 @media (prefers-contrast: high) {
     * {
         border-width: 2px !important;
@@ -1011,4 +1015,73 @@ body {
   padding-left: 10px; /* Espaciado entre la línea y el texto */
   color: #d32f2f; /* Color del texto */
   font-style: italic; /* Opcional: estilo de texto */
+}
+/* Paginación elegante y centrada - AJUSTADO */
+.pagination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  gap: 8px;
+}
+
+.pagination-arrow,
+.pagination-arrow:visited,
+.pagination-arrow:active,
+.pagination-arrow:focus {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  outline: none;
+}
+
+.pagination-arrow {
+  background: #8b6914;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1.15rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  font-family: 'Times New Roman', serif;
+  box-shadow: 0 1px 4px rgba(139, 105, 20, 0.08);
+  /* Elimina cualquier borde inferior accidental */
+  border-bottom: none !important;
+}
+
+.pagination-arrow.disabled,
+.pagination-arrow[aria-disabled="true"] {
+  background: #e8e8e8;
+  color: #b8b8b8;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.7;
+  border-bottom: none !important;
+}
+
+.pagination-page {
+  font-size: 0.98rem;
+  color: #2c2c2c;
+  font-family: 'Source Serif Pro', serif;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  border: none !important;
+}
+
+@media (max-width: 480px) {
+  .pagination-arrow {
+    width: 26px;
+    height: 26px;
+    font-size: 0.95rem;
+    margin: 0 5px;
+  }
+  .pagination-page {
+    font-size: 0.92rem;
+  }
 }
