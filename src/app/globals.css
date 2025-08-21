@@ -34,6 +34,8 @@ header {
     width: 100%;
     border-bottom: 1px solid #8b6914;
     font-family: 'Source Serif Pro', 'Times New Roman', serif;
+    /* height: var(--header-height, 80px);  <-- QUITA ESTA LÍNEA */
+    min-height: var(--header-height, 80px); /* AGREGA ESTA LÍNEA */
 }
 
 .header-content {
@@ -42,6 +44,29 @@ header {
     align-items: center;
     padding: 1.2rem 0;
     min-height: 80px;
+}
+
+:root {
+    --header-height: 80px;
+}
+@media (max-width: 768px) {
+    :root {
+        --header-height: 70px;
+    }
+}
+@media (max-width: 480px) {
+    :root {
+        --header-height: 60px;
+    }
+}
+
+/* El main-layout debe tener padding-top igual a la altura del header */
+.main-layout {
+    display: flex;
+    gap: 30px;
+    padding-top: var(--header-height, 80px); /* Empuja el contenido hacia abajo según el header */
+    margin-top: 0; /* <--- Asegúrate de que sea 0 */
+    /* ...resto igual... */
 }
 
 .logo {

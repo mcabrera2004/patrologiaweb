@@ -1,8 +1,8 @@
+"use client";
 import { client } from "@/sanity/lib/client";
 import Sidebar from "@/app/components/Sidebar";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
-export const revalidate = 60;
 
 interface Params {
   categoria: string;

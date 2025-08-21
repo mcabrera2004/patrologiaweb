@@ -1,6 +1,40 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
+
+declare global {
+  interface Window {
+    googleTranslateElementInit: () => void;
+    google: any;
+  }
+}
 
 const Footer: React.FC = () => {
+  useEffect(() => {
+    // Solo cargar el script si no existe
+    if (!document.getElementById("google-translate-script")) {
+      const script = document.createElement("script");
+      script.id = "google-translate-script";
+      script.src =
+        "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.async = true;
+      document.body.appendChild(script);
+    }
+
+    // Definir la función global para Google Translate
+    window.googleTranslateElementInit = () => {
+      if (window.google && window.google.translate) {
+        new window.google.translate.TranslateElement(
+          {
+            pageLanguage: "es",
+            includedLanguages: "es,en,fr,it,de,pt",
+            layout: 0
+          },
+          "gtranslate_wrapper"
+        );
+      }
+    };
+  }, []);
+
   return (
     <footer>
       <div className="container footer-container">
@@ -11,7 +45,7 @@ const Footer: React.FC = () => {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            padding: "18px 0" // mismo padding superior e inferior
+            padding: "18px 0"
           }}
         >
           <p style={{ margin: 0, fontSize: "0.95rem", textAlign: "center" }}>
@@ -20,6 +54,7 @@ const Footer: React.FC = () => {
               Contáctanos
             </a>
           </p>
+          <div id="gtranslate_wrapper" style={{ marginTop: 16, display: "flex", justifyContent: "center" }} />
         </div>
 
         <div
@@ -28,7 +63,7 @@ const Footer: React.FC = () => {
             borderTop: "1px solid rgba(139,105,20,0.35)",
             padding: "18px 0",
             display: "flex",
-            alignItems: "center",   // Centra verticalmente
+            alignItems: "center",
             justifyContent: "center"
           }}
         >

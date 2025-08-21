@@ -42,6 +42,30 @@ export const blockContentType = defineType({
               {title: 'URL', name: 'href', type: 'url'},
             ],
           },
+          {
+            title: 'Nota expandible',
+            name: 'note',
+            type: 'object',
+            fields: [
+              {
+                title: 'Contenido de la nota',
+                name: 'content',
+                type: 'array',
+                of: [
+                  { type: 'block' },
+                  {
+                    type: 'object',
+                    name: 'link',
+                    title: 'Enlace',
+                    fields: [
+                      { name: 'href', type: 'url', title: 'URL' },
+                      { name: 'text', type: 'string', title: 'Texto del enlace' }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         ],
       },
       components: {
