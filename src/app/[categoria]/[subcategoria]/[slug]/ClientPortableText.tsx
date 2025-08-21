@@ -1,42 +1,61 @@
 "use client";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const NoteMark = ({ value }: any) => {
   const [visible, setVisible] = useState(false);
+  const [adjustStyle, setAdjustStyle] = useState({});
+  const noteRef = useRef<HTMLSpanElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!visible) return;
+
+    // Detecta clic fuera de la nota para cerrarla
     const handler = (e: MouseEvent) => {
       if (!(e.target as HTMLElement).closest(".note-bubble")) setVisible(false);
     };
     document.addEventListener("mousedown", handler);
+
+    // Ajusta la posición si la nota se va de los límites del viewport
+    if (noteRef.current) {
+      const rect = noteRef.current.getBoundingClientRect();
+      let newStyle: any = {};
+      if (rect.left < 8) {
+        newStyle.left = "8px";
+        newStyle.transform = "none";
+      } else if (rect.right > window.innerWidth - 8) {
+        newStyle.left = `calc(100% - ${rect.width + 8}px)`;
+        newStyle.transform = "none";
+      }
+      setAdjustStyle(newStyle);
+    }
     return () => document.removeEventListener("mousedown", handler);
   }, [visible]);
 
   return (
-    <span className="note-bubble" style={{ position: "relative", display: "inline-block" }}>
+    <span
+      className="note-bubble"
+      style={{ position: "relative", display: "inline-block" }}
+    >
       <button
         className="note-toggle"
         tabIndex={0}
         aria-label="Mostrar nota"
-        onClick={() => setVisible((v) => !v)}
+        onClick={() => {
+          setVisible((v) => !v);
+          setAdjustStyle({}); // Resetea el estilo cuando se vuelve a abrir
+        }}
         type="button"
       >
         ⁺
       </button>
-      <span className={`note${visible ? " visible" : ""}`}>
-        <button
-          className="close-note"
-          aria-label="Cerrar nota"
-          onClick={() => setVisible(false)}
-          type="button"
-        >
-          ✕
-        </button>
+      <span
+        ref={noteRef}
+        className={`note${visible ? " visible" : ""}`}
+        style={adjustStyle}
+      >
         <PortableText value={value.content} components={components} />
       </span>
-      {/* No renderizamos children */}
     </span>
   );
 };
