@@ -27,6 +27,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content="Patrología - Padres de la Iglesia" />
+        <meta
+          property="og:description"
+          content="Explorando la enseñanza de los Padres de la Iglesia"
+        />
+        <meta property="og:image" content="https://www.patrologia.org/favicon.ico" />
+        <meta property="og:url" content="https://www.patrologia.org" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Patrología - Padres de la Iglesia" />
+        <meta
+          name="twitter:description"
+          content="Explorando la enseñanza de los Padres de la Iglesia"
+        />
+        <meta name="twitter:image" content="https://www.patrologia.org/favicon.ico" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
