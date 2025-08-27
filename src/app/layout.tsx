@@ -18,6 +18,28 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  openGraph: {
+    title: "Patrología - Padres de la Iglesia",
+    description: "Explorando la enseñanza de los Padres de la Iglesia",
+    url: "https://www.patrologia.org",
+    siteName: "Patrología",
+    images: [
+      {
+        url: "https://www.patrologia.org/favicon.ico",
+        width: 800,
+        height: 600,
+        alt: "Favicon de Patrología",
+      },
+    ],
+    locale: "es_ES",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Patrología - Padres de la Iglesia",
+    description: "Explorando la enseñanza de los Padres de la Iglesia",
+    images: ["https://www.patrologia.org/favicon.ico"],
+  },
 };
 
 export default function RootLayout({
@@ -27,24 +49,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <head>
-        <link rel="icon" href="/favicon.ico" />
-        <meta property="og:title" content="Patrología - Padres de la Iglesia" />
-        <meta
-          property="og:description"
-          content="Explorando la enseñanza de los Padres de la Iglesia"
-        />
-        <meta property="og:image" content="https://www.patrologia.org/favicon.ico" />
-        <meta property="og:url" content="https://www.patrologia.org" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Patrología - Padres de la Iglesia" />
-        <meta
-          name="twitter:description"
-          content="Explorando la enseñanza de los Padres de la Iglesia"
-        />
-        <meta name="twitter:image" content="https://www.patrologia.org/favicon.ico" />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
