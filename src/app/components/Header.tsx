@@ -30,14 +30,19 @@ const Header: React.FC = () => {
     <>
       <header>
         <div className="container">
-          <div className="header-content" style={{ display: "flex", alignItems: "center", justifyContent: "space-between"}}>
+          <div className="header-content" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: 0}}>
             <div style={{ display: "flex", alignItems: "center", margin: "0 auto" }}>
               <a
                 href="/"
                 className="logo"
-                style={{ textDecoration: "none", color: "white", display: "inline" }}
+                style={{ textDecoration: "none", color: "white", display: "inline-flex", alignItems: "center", gap: 0}}
               >
-                <h1 style={{ display: "inline" }}>PADRES DE LA IGLESIA</h1>
+                <img
+                  src="/logo.png"
+                  alt="patrologia.org"
+                  style={{ height: 80, width: "auto" }}
+                />
+                <h1 style={{ display: "inline" }}>PATROLOGIA.ORG</h1>
               </a>
             </div>
             <button
