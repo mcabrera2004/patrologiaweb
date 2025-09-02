@@ -14,35 +14,6 @@ interface Post {
   slug: { current: string };
 }
 
-export async function generateMetadata({ params }: { params: Params }) {
-  const { categoria, subcategoria } = params;
-
-  // Obtiene el nombre de la categoría
-  const cat = await client.fetch(
-    `*[_type == "categoria" && slug.current == $slug][0]{ title }`,
-    { slug: categoria }
-  );
-
-  // Obtiene el nombre de la subcategoría
-  const subcat = await client.fetch(
-    `*[_type == "subcategoria" && slug.current == $slug][0]{ title }`,
-    { slug: subcategoria }
-  );
-
-  return {
-    title: cat?.title || "Subcategoría",
-    description: subcat?.title || "",
-    openGraph: {
-      title: cat?.title || "Subcategoría",
-      description: subcat?.title || "",
-    },
-    twitter: {
-      title: cat?.title || "Subcategoría",
-      description: subcat?.title || "",
-    },
-  };
-}
-
 const PAGE_SIZE = 10;
 
 export default async function SubcategoriaPage({
