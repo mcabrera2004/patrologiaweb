@@ -48,10 +48,9 @@ export async function generateMetadata({ params }: { params: Params }) {
 export default async function TesisPage({
   params,
 }: {
-  params: Promise<Params>;
+  params: Params;
 }) {
-  const resolvedParams = await params;
-  const { categoria, subcategoria, slug } = resolvedParams;
+  const { categoria, subcategoria, slug } = params;
 
   const post: Post | null = await client.fetch(
     `*[_type == "post" 
