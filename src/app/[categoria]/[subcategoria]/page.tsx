@@ -14,6 +14,47 @@ interface Post {
   slug: { current: string };
 }
 
+export async function generateMetadata({ params }: { params: Promise<Params> }) {
+  const { categoria, subcategoria } = await params;
+
+  // Obtener los títulos de la categoría y subcategoría
+  const cat = await client.fetch(
+    `*[_type == "categoria" && slug.current == $slug][0]{title}`,
+    { slug: categoria }
+  );
+  const subcat = await client.fetch(
+    `*[_type == "subcategoria" && slug.current == $slug][0]{title}`,
+    { slug: subcategoria }
+  );
+
+  return {
+    title: cat?.title || "Patrología",
+    description: subcat?.title || "",
+    openGraph: {
+      title: cat?.title || "Patrología",
+      description: subcat?.title || "",
+      url: `https://www.patrologia.org/${categoria}/${subcategoria}`,
+      siteName: "Patrología",
+      images: [
+        {
+          url: "https://www.patrologia.org/favicon.ico",
+          width: 250,
+          height: 250,
+          alt: "Favicon de Patrología",
+        },
+      ],
+      locale: "es_ES",
+      type: "website",
+    },
+    twitter: {
+      card: "summary",
+      title: cat?.title || "Patrología",
+      description: subcat?.title || "",
+      images: ["https://www.patrologia.org/favicon.ico"],
+    },
+  };
+}
+
 const PAGE_SIZE = 10;
 
 export default async function SubcategoriaPage({
