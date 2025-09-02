@@ -16,6 +16,7 @@ export const blockContentType = defineType({
         {title: 'H4', value: 'h4'},
         {title: 'Cita', value: 'blockquote'},
         {title: 'Objeción', value: 'objection'},
+        {title: 'Declaración', value: 'declaration'},
       ],
       lists: [{title: 'Bullet', value: 'bullet'}],
       marks: {

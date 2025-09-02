@@ -42,6 +42,20 @@ const components: PortableTextComponents = {
         <div className="objection-text">{children}</div>
       </div>
     ),
+        declaration: ({ children }) => (
+      <div
+        className="declaration"
+        style={{
+          fontFamily: "'Source Serif Pro', serif",
+          fontSize: "0.95rem",
+          color: "#222",
+          margin: "18px 0",
+          textAlign: "center",
+        }}
+      >
+        {children}
+      </div>
+    ),
     h2: ({ children }) => (
       <h2
         className="objections-title"
@@ -56,6 +70,21 @@ const components: PortableTextComponents = {
       >
         {children}
       </h2>
+    ),
+    h3: ({ children }) => (
+      <h3
+        style={{
+          color: "#8b6914",
+          textAlign: "center",
+          fontWeight: 700,
+          fontFamily: "'Source Serif Pro', serif",
+          fontSize: "1.3rem",
+          margin: "40px 0 20px 0",
+          position: "relative",
+        }}
+      >
+        {children}
+      </h3>
     ),
     h4: ({ children }) => (
       <h4

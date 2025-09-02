@@ -15,6 +15,36 @@ interface Post {
   body: any;
 }
 
+export async function generateMetadata({ params }: { params: Params }) {
+  const { categoria, subcategoria, slug } = params;
+
+  const subcat = await client.fetch(
+    `*[_type == "subcategoria" && slug.current == $slug][0]{ title }`,
+    { slug: subcategoria }
+  );
+
+  const post = await client.fetch(
+    `*[_type == "post" 
+      && slug.current == $slug 
+      && subcategoria->slug.current == $subcategoria 
+      && categoria->slug.current == $categoria][0]{ title }`,
+    { categoria, subcategoria, slug }
+  );
+
+  return {
+    title: subcat?.title || "Tesis",
+    description: post?.title || "",
+    openGraph: {
+      title: subcat?.title || "Tesis",
+      description: post?.title || "",
+    },
+    twitter: {
+      title: subcat?.title || "Tesis",
+      description: post?.title || "",
+    },
+  };
+}
+
 export default async function TesisPage({
   params,
 }: {
