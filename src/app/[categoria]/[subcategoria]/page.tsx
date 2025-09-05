@@ -37,8 +37,8 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
       siteName: "Patrología",
       images: [
         {
-          url: "https://www.patrologia.org/favicon.ico",
-          width: 250,
+          url: "/OpenGraph.jpg",
+          width: 300,
           height: 250,
           alt: "Favicon de Patrología",
         },
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
       card: "summary",
       title: cat?.title || "Patrología",
       description: subcat?.title || "",
-      images: ["https://www.patrologia.org/favicon.ico"],
+      images: ["/OpenGraph.jpg"],
     },
   };
 }
@@ -83,7 +83,7 @@ export default async function SubcategoriaPage({
   );
 
   const posts: Post[] = await client.fetch(
-    `*[_type == "post" && subcategoria._ref == $subcatId] | order(title asc) [${start}...${end}]{
+    `*[_type == "post" && subcategoria._ref == $subcatId] | order(priority asc, title asc) [${start}...${end}]{
       _id,
       title,
       slug

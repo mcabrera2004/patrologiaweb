@@ -45,8 +45,8 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
       siteName: "Patrología",
       images: [
         {
-          url: "https://www.patrologia.org/favicon.ico",
-          width: 250,
+          url: "/OpenGraph.jpg",
+          width: 300,
           height: 250,
           alt: "Favicon de Patrología",
         },
@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
       card: "summary",
       title: post.subcategoria?.title || "Patrología",
       description: post.title,
-      images: ["https://www.patrologia.org/favicon.ico"],
+      images: ["/OpenGraph.jpg"],
     },
   };
 }

@@ -43,6 +43,13 @@ export const postType = defineType({
       },
     }),
     defineField({
+      name: 'priority',
+      title: 'Prioridad',
+      type: 'number',
+      description: 'Un número menor significa mayor prioridad',
+      initialValue: 1,
+    }),
+    defineField({
       name: 'author',
       type: 'reference',
       to: {type: 'author'},

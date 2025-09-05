@@ -25,8 +25,8 @@ export const metadata: Metadata = {
     siteName: "Patrología",
     images: [
       {
-        url: "https://www.patrologia.org/favicon.ico",
-        width: 250,
+        url: "/OpenGraph.jpg",
+        width: 300,
         height: 250,
         alt: "Favicon de Patrología",
       },
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Patrología - Padres de la Iglesia",
     description: "Explorando la enseñanza de los Padres de la Iglesia",
-    images: ["https://www.patrologia.org/favicon.ico"],
+    images: ["/OpenGraph.jpg"],
   },
 };
 
